@@ -1,5 +1,6 @@
 from flask import jsonify, request
 from lyrica import lyrica, db
+from lyrica.helpers import helper
 
 # Test page, to check if app is running.
 @lyrica.route('/')
@@ -11,7 +12,7 @@ def index():
 @lyrica.route('/v1/api/lyrica', methods=['GET'])
 @lyrica.route('/v1/api/lyrica/<id>', methods=['GET'])
 def get_lyrica(id=None):
-    lyrica = helpers.get_lyrica(id)
+    lyrica = helper.get_lyrica(id)
     r = {
             "success": True,
             "lyrica": lyrica,
@@ -24,7 +25,7 @@ def delete_lyrica(id=None):
     r = {'success': False, 'lyrica': {}}
 
     if id is not None:
-        lyrica = helpers.delete_lyrica(id)
+        lyrica = helper.delete_lyrica(id)
         r['success'] = True
 
     return jsonify(r)
@@ -34,7 +35,7 @@ def delete_lyrica(id=None):
 def insert_lyrica(id=None):
     data = request.get_json(force=True)
 
-    lyrica = helpers.insert_lyrica(data)
+    lyrica = helper.insert_lyrica(data)
     r = {
             "success": True,
             "lyrica": lyrica,
@@ -46,8 +47,9 @@ def insert_lyrica(id=None):
 @lyrica.route('/v1/api/lyrica/<id>', methods=['PUT'])
 def update_lyrica(id=None):
     data = request.get_json(force=True)
+    r = {'success': False, 'lyrica': {}}
 
-    lyrica = helpers.update_lyrica(id, data)
+    lyrica = helper.update_lyrica(id, data)
     r = {
             "success": True,
             "lyrica": lyrica,
