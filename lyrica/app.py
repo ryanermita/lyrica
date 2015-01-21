@@ -1,4 +1,4 @@
-from flask import jsonify, request
+from flask import jsonify, request, render_template
 from lyrica import lyrica, db
 from lyrica.helpers import helper
 
@@ -6,7 +6,8 @@ from lyrica.helpers import helper
 @lyrica.route('/')
 @lyrica.route('/index')
 def index():
-    return jsonify({"test": True})
+    #return jsonify({"test": True})
+    return render_template('index.html')
 
 # GET 
 @lyrica.route('/v1/api/lyrica', methods=['GET'])
