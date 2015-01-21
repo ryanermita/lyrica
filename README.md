@@ -9,5 +9,3 @@ Code reviewers and critics are much welcome, just open an issue for open discuss
 4. Backbone
 5. Flask
 
-#### Note
-This is just a simple web app I use in learning the technologies above.
